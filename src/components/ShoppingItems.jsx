@@ -1,18 +1,18 @@
 import { MdEdit, MdDelete } from "react-icons/md";
 
-export default function ShoppingItems({ items }) {
+export default function ShoppingItems({ items, onSetItems }) {
   return (
     <div className="items">
       <ul>
         {items.map((item) => (
-          <Item item={item} key={item.id} />
+          <Item item={item} key={item.id} onSetItems={onSetItems} />
         ))}
       </ul>
     </div>
   );
 }
 
-function Item({ item }) {
+function Item({ item, onSetItems }) {
   const isItemPurchased = item.purchased;
 
   return (
@@ -21,6 +21,7 @@ function Item({ item }) {
         type="checkbox"
         value={isItemPurchased}
         checked={isItemPurchased}
+        onChange={() => onSetItems(item.id)}
       />
       <span style={isItemPurchased ? { textDecoration: "line-through" } : {}}>
         {item.quantity} {item.name}
@@ -31,5 +32,4 @@ function Item({ item }) {
       </span>
     </li>
   );
-  // ));
 }

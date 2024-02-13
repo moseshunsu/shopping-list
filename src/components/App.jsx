@@ -10,9 +10,19 @@ const initialShoppingList = [
 export default function App() {
   const [items, setItems] = useState(initialShoppingList);
 
+  function handleSetItems(selectedItemId) {
+    setItems(
+      items.map((item) =>
+        selectedItemId === item.id
+          ? { ...item, purchased: !item.purchased }
+          : item
+      )
+    );
+  }
+
   return (
     <div className="App">
-      <ShoppingItems items={items} />
+      <ShoppingItems items={items} onSetItems={handleSetItems} />
     </div>
   );
 }
