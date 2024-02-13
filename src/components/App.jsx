@@ -1,5 +1,6 @@
 import { useState } from "react";
 import ShoppingItems from "./ShoppingItems";
+import Form from "./Form";
 
 const initialShoppingList = [
   { id: 1, name: "Milk", quantity: 1, purchased: false },
@@ -20,9 +21,14 @@ export default function App() {
     );
   }
 
+  function handleAddItem(item) {
+    setItems((items) => [...items, item]);
+  }
+
   return (
     <div className="App">
       <ShoppingItems items={items} onSetItems={handleSetItems} />
+      <Form onAddItem={handleAddItem} />
     </div>
   );
 }
