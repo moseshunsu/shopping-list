@@ -5,3 +5,11 @@
 body {
   margin: 0;
 }
+
+.show {
+  display: block;
+}
+
+.hidden {
+  display: none;
+}
