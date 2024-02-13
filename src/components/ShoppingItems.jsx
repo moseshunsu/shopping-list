@@ -4,17 +4,25 @@ export default function ShoppingItems({ items }) {
   return (
     <div className="items">
       <ul>
-        <Item items={items} />
+        {items.map((item) => (
+          <Item item={item} key={item.id} />
+        ))}
       </ul>
     </div>
   );
 }
 
-function Item({ items }) {
-  return items.map((item) => (
-    <li key={item.id} className="item">
-      <input type="checkbox" value={item.purchased} checked={item.purchased} />
-      <span style={item.purchased ? { textDecoration: "line-through" } : {}}>
+function Item({ item }) {
+  const isItemPurchased = item.purchased;
+
+  return (
+    <li className="item">
+      <input
+        type="checkbox"
+        value={isItemPurchased}
+        checked={isItemPurchased}
+      />
+      <span style={isItemPurchased ? { textDecoration: "line-through" } : {}}>
         {item.quantity} {item.name}
       </span>
       <span className="icons">
@@ -22,5 +30,6 @@ function Item({ items }) {
         <MdDelete className="delete icon" />
       </span>
     </li>
-  ));
+  );
+  // ));
 }
